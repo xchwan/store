@@ -5,7 +5,7 @@ class Coupon < ApplicationRecord
   before_save :generate_code
 
   def is_available?
-    (begin_at < Time.now.beginning_of_day) && (end_at > Time.now.end_of_day)
+    (begin_at < Time.current) && (end_at > Time.current)
   end
 
   private
