@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :set_book, only: %i[ show edit update destroy apply_coupon]
 
   # GET /books or /books.json
   def index
@@ -54,6 +54,16 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def apply_coupon
+    coupon = Coupon.find_by(code: params[:book][:coupon])
+    if coupon
+      @book.apply_coupon(coupon)
+      redirect_to books_path, notice: "折價"
+    else
+      redirect_to books_path, notice: "找不到折價卷代碼"
     end
   end
 
