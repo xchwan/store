@@ -5,4 +5,5 @@ Rails.application.routes.draw do
       get :apply_coupon
     end
   end
+  root "books#index"
 end
