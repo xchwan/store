@@ -20,5 +20,10 @@
   <%= @coupon.end_at %>
 </p>
 
+<p>
+  <strong>Used:</strong>
+  <%= @coupon.used %>
+</p>
+
 <%= link_to 'Edit', edit_coupon_path(@coupon) %> |
 <%= link_to 'Back', coupons_path %>

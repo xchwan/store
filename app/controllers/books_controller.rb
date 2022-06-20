@@ -61,6 +61,8 @@ class BooksController < ApplicationController
     coupon = Coupon.find_by(code: params[:book][:coupon])
     if coupon.nil?
       redirect_to books_path, notice: "找不到折價卷代碼"
+    elsif coupon.used
+      redirect_to books_path, notice: "折價券已經使用過"
     elsif coupon.is_available?
       @book.apply_coupon(coupon)
       redirect_to books_path, notice: "折價"

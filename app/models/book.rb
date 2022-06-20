@@ -7,5 +7,7 @@ class Book < ApplicationRecord
       self.price -= coupon.discount
       self.price = 0 if self.price < 0
       self.save
+      coupon.used = true
+      coupon.save
   end
 end
